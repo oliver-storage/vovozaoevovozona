@@ -93,10 +93,10 @@ function desenhaVovo(c,id,x,y,dir,est,t,op={}){
     // cabelo grisalho penteado para trás
     c.fillStyle=lg(c,hx0-12,hy-14,hx0+10,hy-2,P.cab); c.beginPath(); c.moveTo(hx0-13,hy+2); c.quadraticCurveTo(hx0-15,hy-15,hx0-1,hy-15); c.quadraticCurveTo(hx0+12,hy-15,hx0+12,hy-6); c.quadraticCurveTo(hx0+2,hy-10,hx0-6,hy-5); c.quadraticCurveTo(hx0-9,hy-1,hx0-10,hy+4); c.closePath(); c.fill();
     c.strokeStyle='rgba(255,255,255,.7)'; c.lineWidth=1.2; c.beginPath(); c.moveTo(hx0-8,hy-11); c.quadraticCurveTo(hx0,hy-14,hx0+8,hy-10); c.stroke();
-    // barba grisalha aparada
-    c.fillStyle=lg(c,hx0-8,hy,hx0+10,hy+14,P.cab); c.beginPath(); c.moveTo(hx0-8,hy-1); c.quadraticCurveTo(hx0-9,hy+12,hx0+3,hy+14); c.quadraticCurveTo(hx0+13,hy+12,hx0+13,hy+1); c.quadraticCurveTo(hx0+9,hy+6,hx0+3,hy+6); c.quadraticCurveTo(hx0-2,hy+6,hx0-4,hy+1); c.closePath(); c.fill();
-    c.fillStyle=P.cab[1]; c.beginPath(); c.ellipse(hx0+8,hy+3.5,5.5,2.3,.1,0,7); c.fill();
-    c.fillStyle='#c0505a'; c.beginPath(); c.ellipse(hx0+8,hy+6.4,2.6,1.1,0,0,7); c.fill();
+    // rosto barbeado com sorriso
+    c.strokeStyle='#8a3a2a'; c.lineWidth=1.8; c.lineCap='round'; c.beginPath(); if(est==='susto') c.ellipse(hx0+8,hy+6,2.2,2.8,0,0,7); else c.arc(hx0+7,hy+3,4.5,.35,Math.PI-.6); c.stroke();
+    c.fillStyle='rgba(200,90,70,.22)'; c.beginPath(); c.ellipse(hx0+3,hy+3,3,1.8,0,0,7); c.fill();
+    c.fillStyle='rgba(0,0,0,.08)'; c.beginPath(); c.ellipse(hx0+4,hy+9,7,2.5,0,0,7); c.fill();
     // olho, sobrancelha, nariz
     const assust=est==='susto';
     c.fillStyle='#fff'; c.beginPath(); c.ellipse(hx0+6,hy-3,2.6,assust?3:2.2,0,0,7); c.fill();
@@ -162,8 +162,8 @@ function desenhaCrianca(c,id,x,y,dir,t,feliz){
   c.strokeStyle='#8a2b2b'; c.lineWidth=1.5; c.beginPath(); c.arc(0.5,-46,4,.2,Math.PI-.2); c.stroke();
   c.fillStyle='rgba(255,120,140,.4)'; c.beginPath(); c.arc(-7,-46,2.5,0,7); c.arc(8,-46,2.5,0,7); c.fill();
   // chapéu de festa
-  c.fillStyle=lg(c,-6,-80,6,-60,eu?['#d6b3ff','#9b6bff','#5a35b0']:['#9ee5de','#2ecc71','#178a4a']); c.beginPath(); c.moveTo(-7,-61); c.lineTo(0,-82); c.lineTo(7,-61); c.closePath(); c.fill();
-  c.fillStyle='#fff'; for(let k=0;k<3;k++){ c.beginPath(); c.arc(-2+k*2,-66-k*5,1.3,0,7); c.fill(); } bola(c,0,-83,2.6,'#fff6c8','#f2c14e','#a8781a');
+  c.fillStyle=lg(c,-12,-80,12,-58,['#ff6b6b','#d62839','#7a0f18']); c.beginPath(); c.moveTo(-12,-59); c.quadraticCurveTo(-4,-78,10,-80); c.quadraticCurveTo(14,-70,12,-59); c.closePath(); c.fill();
+  c.fillStyle='#fff'; rr(c,-13,-62,26,5,2.5); c.fill(); bola(c,10,-81,3,'#fff','#eee','#bbb');
   c.restore();
 }
 function desenhaDuende(c,x,y,dir,t,est){

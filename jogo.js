@@ -1,5 +1,5 @@
 // Vovozão e Vovozona — motor do jogo
-const CONFIG = { SISTEMA:'Vovozão e Vovozona', VERSAO:'0.1.0.0', DESENVOLVEDOR:'Vettore Sistemas' };
+const CONFIG = { SISTEMA:'Vovozão e Vovozona', VERSAO:'0.1.1.0', DESENVOLVEDOR:'Vettore Sistemas' };
 const $=id=>document.getElementById(id);
 const VW=640, VH=360, ROWS=11, G=1800, DT=1/60;
 const LETRAS=['N','A','T','A','L'];
@@ -558,8 +558,8 @@ function iniciarFase(n){ Som.init(); fecharModal(); tocarCena(CENAS['f'+n],()=>j
 // ---------- história em balões ----------
 const CENAS={
   abertura:[
-    {cen:'sala',atores:[['zona',230,1,'parado'],['zao',300,-1,'parado']],quem:'zona',txt:'Natal e aniversário dos netinhos no mesmo dia!'},
-    {cen:'sala',atores:[['zona',230,1,'feliz'],['zao',300,-1,'parado']],quem:'zao',txt:'Johnson Neto e Eloisa merecem os melhores presentes!'},
+    {cen:'sala',atores:[['zona',230,1,'parado'],['zao',300,-1,'parado']],quem:'zona',txt:'O Natal está chegando!'},
+    {cen:'sala',atores:[['zona',230,1,'feliz'],['zao',300,-1,'parado']],quem:'zao',txt:'Johnson Neto e Eloisa merecem os melhores presentes de Natal!'},
     {cen:'sala',atores:[['zona',230,1,'susto'],['zao',300,-1,'susto'],['duende',120,1,'parado']],quem:'duende',txt:'Hihihi! Espalhei todos os presentes pela cidade!',fx:'voam'},
     {cen:'sala',atores:[['zona',230,-1,'parado'],['zao',300,-1,'parado']],quem:'zao',txt:'Ah, é? Então vamos buscar um por um!'},
     {cen:'sala',atores:[['zona',230,1,'feliz'],['zao',300,-1,'feliz']],quem:'zona',txt:'Cidade, escritório e casa. Bora, Vovozão!'},
@@ -570,9 +570,9 @@ const CENAS={
   final:[
     {cen:'festa',atores:[['zao',180,1,'feliz'],['zona',240,1,'feliz'],['johnson',360,-1,'feliz'],['eloisa',410,-1,'feliz']],quem:'johnson',txt:'Vovozão! Vovozona! Vocês chegaram!',fx:'festa'},
     {cen:'festa',atores:[['zao',180,1,'parado'],['zona',240,1,'feliz'],['johnson',360,-1,'feliz'],['eloisa',410,-1,'feliz']],quem:'eloisa',txt:'Quantos presentes!',fx:'festa'},
-    {cen:'festa',atores:[['zao',180,1,'feliz'],['zona',240,1,'feliz'],['johnson',360,-1,'feliz'],['eloisa',410,-1,'feliz']],quem:'zona',txt:'Feliz Natal e feliz aniversário, meus amores!',fx:'festa'},
-    {cen:'festa',atores:[['zao',180,1,'parado'],['zona',240,1,'parado'],['johnson',360,-1,'parado'],['eloisa',410,-1,'parado'],['duende',520,-1,'triste']],quem:'duende',txt:'Desculpa a bagunça… sobrou bolo?',fx:'festa'},
-    {cen:'festa',atores:[['zao',180,1,'feliz'],['zona',240,1,'feliz'],['johnson',360,-1,'feliz'],['eloisa',410,-1,'feliz'],['duende',520,-1,'parado']],quem:'zao',txt:'Sobrou! Hoje é dia de festa!',fx:'festa'},
+    {cen:'festa',atores:[['zao',180,1,'feliz'],['zona',240,1,'feliz'],['johnson',360,-1,'feliz'],['eloisa',410,-1,'feliz']],quem:'zona',txt:'Feliz Natal, meus amores!',fx:'festa'},
+    {cen:'festa',atores:[['zao',180,1,'parado'],['zona',240,1,'parado'],['johnson',360,-1,'parado'],['eloisa',410,-1,'parado'],['duende',520,-1,'triste']],quem:'duende',txt:'Desculpa a bagunça… sobrou rabanada?',fx:'festa'},
+    {cen:'festa',atores:[['zao',180,1,'feliz'],['zona',240,1,'feliz'],['johnson',360,-1,'feliz'],['eloisa',410,-1,'feliz'],['duende',520,-1,'parado']],quem:'zao',txt:'Sobrou! Senta aí, é Natal!',fx:'festa'},
   ],
 };
 const NOME_CENA={zao:'Vovozão',zona:'Vovozona',johnson:'Johnson Neto',eloisa:'Eloisa',duende:'Duende Bagunceiro'};
@@ -592,8 +592,11 @@ function desenhaCena(c,q,t){
   desenhaCeu(c,tema,0,VW,VH,t); c.drawImage(F2.f.longe,0,-40); c.drawImage(F2.f.perto,-200,-20);
   for(let x=0;x<VW;x+=T){ c.drawImage(F2.tl.chaoTopo,x,base,T,T); c.drawImage(F2.tl.chao,x,base+T,T,T); }
   if(q.cen==='festa'){ for(let k=0;k<12;k++){ c.fillStyle=['#ff4d6a','#ffd93b','#46a8ff','#2ecc71'][k%4]; c.beginPath(); c.moveTo(k*56,20); c.lineTo(k*56+28,50); c.lineTo(k*56+56,20); c.fill(); }
-    c.fillStyle='#fff'; rr(c,470,base-70,90,70,8); c.fill(); c.fillStyle=lg(c,470,base-110,560,base-70,['#ffe0ea','#f7b2c4','#c97a92']); rr(c,480,base-110,70,42,8); c.fill(); c.fillStyle='#fff'; c.fillRect(480,base-110,70,8);
-    for(let k=0;k<5;k++){ c.fillStyle='#46a8ff'; c.fillRect(488+k*13,base-126,3,16); c.fillStyle=Math.floor(t*8+k)%2?'#ffd93b':'#ff9f1c'; c.beginPath(); c.ellipse(489.5+k*13,base-130,2.5,4,0,0,7); c.fill(); }
+    c.fillStyle=lg(c,460,base-56,580,base,['#a0522d','#7a3e1d']); rr(c,460,base-56,120,10,4); c.fill(); c.fillRect(468,base-46,8,46); c.fillRect(564,base-46,8,46);
+    c.fillStyle='#fff'; c.beginPath(); c.ellipse(520,base-58,40,7,0,0,7); c.fill();
+    c.fillStyle=lg(c,494,base-84,546,base-58,['#e8a868','#b8793e','#7a4a20']); c.beginPath(); c.ellipse(520,base-66,24,16,0,Math.PI,0); c.fill(); c.fillRect(496,base-66,48,6);
+    c.fillStyle='#fff'; c.fillRect(516,base-88,3,10); c.fillStyle='#2e9e46'; c.beginPath(); c.ellipse(482,base-62,8,5,0,0,7); c.ellipse(558,base-62,8,5,0,0,7); c.fill();
+    c.fillStyle='#d62839'; c.beginPath(); c.arc(478,base-64,2.5,0,7); c.arc(562,base-64,2.5,0,7); c.fill();
     for(let k=0;k<6;k++) presente(c,80+k*26,base-12,22,k,t); }
   if(tema==='cidade'){ c.fillStyle='rgba(255,255,255,.85)'; for(let k=0;k<50;k++){ const x=(k*137+t*25)%VW, y=(k*71+t*(40+k%4*12))%VH; c.beginPath(); c.arc(x,y,1.5,0,7); c.fill(); } }
   let fx2=VW/2, fy=100;
